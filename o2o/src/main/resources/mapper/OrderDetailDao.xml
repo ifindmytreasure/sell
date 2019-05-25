@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.o2o.dao.OrderDetailDao">
+    <resultMap id="orderDetailMap" type="com.imooc.o2o.entity.OrderDetail">
+        <id property="detailId" column="detail_id"/>
+        <result property="productQuantity" column="product_quantity"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productPrice" column="product_price"/>
+        <association property="orderMaster" column="order_id" javaType="com.imooc.o2o.entity.OrderMaster">
+            <id property="orderId" column="order_id"/>
+            <result property="orderAmount" column="order_amount"/>
+            <result property="orderStatus" column="order_status"/>
+            <result property="buyerId" column="buyer_id"/>
+            <result property="buyerName" column="buyer_name"/>
+            <result property="buyerAddress" column="buyer_address"/>
+            <result property="buyerPhone" column="buyer_phone"/>
+            <result property="payStatus" column="pay_status"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+        </association>
+        <association property="shop" column="shop_id" javaType="com.imooc.o2o.entity.Shop">
+            <id property="shopId" column="shop_id"/>
+            <result property="shopName" column="shop_name"/>
+        </association>
+    </resultMap>
+    <insert id="insertOrderDetail" parameterType="com.imooc.o2o.entity.OrderDetail" useGeneratedKeys="true" keyProperty="detailId" keyColumn="detail_id">
+        insert into tb_order_detail(order_id,shop_id,product_id,product_name,product_price,product_quantity,create_time,update_time)
+        values(#{orderMaster.orderId},#{shop.shopId},#{productId},#{productName},#{productPrice},#{productQuantity},#{createTime},#{updateTime})
+    </insert>
+    <select id="queryOrderDetailList" parameterType="com.imooc.o2o.entity.OrderDetail" resultMap="orderDetailMap">
+        select od.detail_id,om.order_id,om.buyer_name,om.buyer_phone,om.buyer_address,om.buyer_id,s.shop_id,s.shop_name,od.product_id,od.product_name,od.product_price,od.product_quantity,om.order_amount,om.order_status,om.pay_status,om.create_time,om.update_time from tb_order_detail od,tb_order_master om,tb_shop s
+        <where>
+            <if test="orderDetailCondition.shop != null and orderDetailCondition.shop.shopId != null ">
+                s.shop_id = #{orderDetailCondition.shop.shopId}
+            </if>
+            <if test="orderDetailCondition.detailId != null">
+                and od.detail_id = #{orderDetailCondition.detailId}
+            </if>
+            and od.order_id = om.order_id
+            and od.shop_id = s.shop_id
+        </where>
+    </select>
+    <select id="queryOrderDetailListByOrderIds" resultMap="orderDetailMap" parameterType="java.util.List">
+        select od.detail_id,om.order_id,s.shop_id,s.shop_name,od.product_id,od.product_name,od.product_price,od.product_quantity,om.order_amount,om.order_status,om.pay_status,om.create_time,om.update_time from tb_order_detail od left join tb_order_master om on od.order_id = om.order_id left join tb_shop s on od.shop_id = s.shop_id where om.order_id in<foreach item="item" index="index" collection="list" open="(" separator="," close=")">#{item}</foreach>
+    </select>
+</mapper>

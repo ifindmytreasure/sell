@@ -1,0 +1,30 @@
+.row-order {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-bottom: none;
+}
+
+.row-order * {
+    white-space: nowrap;
+    overflow: scroll;
+}
+
+.row-order:last-child {
+    border-bottom: 1px solid #999;
+}
+
+#product-info {
+    white-space: nowrap;
+    overflow-y: scroll;
+}
+
+.order-wrap a {
+    margin-right: 1rem;
+}
+
+#preview {
+    margin-left: -3px;
+    padding-left: 4px;
+}
+
+

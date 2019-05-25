@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订单详情</title>
+    <meta name="description" content="MSUI: Build mobile apps with simple HTML, CSS, and JS components.">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Google Web Fonts -->
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+
+    <link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page">
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back" href="/o2o/fronted/orderinfo">
+                <span class="icon icon-left"></span>
+                返回
+            </a>
+            <h1 class="title">订单详情</h1>
+        </header>
+        <nav class="bar bar-tab">
+            <a class="tab-item" href="/o2o/fronted/index" external> <span
+                    class="icon icon-home"></span> <span class="tab-label">首页</span>
+            </a> <a class="tab-item" href="#" id="me"> <span
+                class="icon icon-me"></span> <span class="tab-label">我</span>
+        </a>
+        </nav>
+        <div class="content">
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">商品所属店铺</div>
+                                <div class="item-input">
+                                    <input type="text" id="shop-name" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">订单编号</div>
+                                <div class="item-input">
+                                    <input type="text" id="order-number" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!--地址 text-->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">创建时间</div>
+                                <div class="item-input">
+                                    <input type="text" id="create-time" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">订单总价</div>
+                                <div class="item-input">
+                                    <input type="text" id="order-amount" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">付款状态</div>
+                                <div class="item-input">
+                                    <input type="text" id="pay-status" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">订单状态</div>
+                                <div class="item-input">
+                                    <input type="text" id="order-status" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-100"><a href="#"
+                                           class="button button-big button-fill button-danger" id="gopay">去付款</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-overlay"></div>
+        <div class="panel panel-right panel-reveal" id="panel-right-demo">
+            <div class="content-block">
+                <p>
+                    <a href="/o2o/local/accountbind?usertype=1" class="close-panel">绑定帐号</a>
+                </p>
+                <p>
+                    <a href="/o2o/local/changepsw?usertype=1" class="close-panel">修改密码</a>
+                </p>
+                <p>
+                    <a href="/o2o/fronted/myrecord" class="close-panel" id="records">消费记录</a>
+                </p>
+                <p>
+                    <a href="/o2o/fronted/mypoint" class="close-panel">我的积分</a>
+                </p>
+                <p>
+                    <a href="/o2o/fronted/pointrecord" class="close-panel">兑换记录</a>
+                </p>
+                <p>
+                    <a href="/o2o/fronted/orderinfo" class="close-panel">我的订单</a>
+                </p>
+                <p>
+                    <a href="#" usertype="1" class="close-panel" id="log-out">登出系统</a>
+                </p>
+                <!-- Click on link with "close-panel" class will close panel -->
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="../resources/js/common/common.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../resources/js/fronted/orderdetailinfo.js" charset="utf-8"></script>
+<script type='text/javascript' src='../resources/js/local/logout.js' charset='utf-8'></script>
+
+</body>
+</html>
